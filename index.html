@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aastha Vidya Mandir</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;scroll-behavior:smooth;}
+
+body{
+background:#0f2027;
+color:white;
+}
+
+/* LOADER */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+padding:15px 30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+position:fixed;
+width:100%;
+z-index:100;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+/* BUTTON */
+.btn{
+padding:10px 20px;
+background:#00ffe0;
+border:none;
+border-radius:20px;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* SLIDER */
+.slider{
+height:300px;
+width:80%;
+margin:40px auto;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1s;
+}
+
+.slide.active{opacity:1;}
+
+section{
+padding:80px 20px;
+text-align:center;
+}
+
+input,textarea{
+width:80%;
+padding:10px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader">Loading...</div>
+
+<nav>
+<h2>Aastha School</h2>
+<div>
+<a href="#">Home</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Aastha Vidya Mandir</h1>
+<p>English Medium School - Geedam</p>
+
+<a href="#" target="_blank">
+<button class="btn">Visit School</button>
+</a>
+
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+<h2>School Gallery</h2>
+<div class="slider" id="slider"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Us</h2>
+
+<form action="https://api.web3forms.com/submit" method="POST">
+
+<input type="hidden" name="access_key" value="97f036df-189b-406d-a12c-a0dedd663f2a">
+
+<input type="hidden" name="subject" value="New message from Aastha School Website">
+
+<input type="text" name="name" placeholder="Name" required><br>
+
+<input type="email" name="email" placeholder="Email" required><br>
+
+<textarea name="message" placeholder="Message"></textarea><br>
+
+<button class="btn" type="submit">Send Message</button>
+
+</form>
+
+</section>
+
+<script>
+
+/* LOADER */
+window.onload = () => {
+document.getElementById("loader").style.display="none";
+};
+
+/* IMAGE SLIDER */
+const slider=document.getElementById("slider");
+
+let images = ["img1.jpg","img2.jpg","img3.jpg"];
+let index=0;
+
+function loadImages(){
+images.forEach(src=>{
+let div=document.createElement("div");
+div.className="slide";
+div.style.backgroundImage=`url(${src})`;
+slider.appendChild(div);
+});
+slider.children[0].classList.add("active");
+}
+loadImages();
+
+/* SLIDER AUTO CHANGE */
+setInterval(()=>{
+let slides=document.querySelectorAll(".slide");
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},3000);
+
+</script>
+
+</body>
+</html>
